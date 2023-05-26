@@ -8,6 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
+    "build-prod": "parcel build src/index.html"
   },
   "private": true,
   "dependencies": {
