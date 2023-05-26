@@ -1,5 +1,6 @@
 {
   "name": "my-app",
+  "homepage": "https://naveen-maddimsetty.github.io/jenkins-angular/",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
