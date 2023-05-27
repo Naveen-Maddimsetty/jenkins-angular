@@ -3,6 +3,8 @@
   "homepage": "https://naveen-maddimsetty.github.io/jenkins-angular/",
   "version": "0.0.0",
   "scripts": {
+    "predeploy": "ng run build",
+    "deploy": "gh-pages -d build",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
