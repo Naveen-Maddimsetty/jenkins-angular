@@ -22,8 +22,11 @@ jobs:
         run: npm ci
         
       - name: Build
-        run: npm run build -- --configuration production --base-href "/jenkins-angular/" --deploy-url "/https://mmworkspace.com/jenkins-angular/"
+        run: npm run build -- --configuration production --base-href "/jenkins-angular/"
 
+      - name: Deploy
+        run: npm run deploy --base-href=jenkins-angular
+        
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
         with:
