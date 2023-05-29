@@ -12,5 +12,6 @@ import { AppComponent } from './app.component';
   ],
   providers: [],
   bootstrap: [AppComponent]
+  providers: [{ provide: APP_BASE_HREF, useValue: '/jenkins-angular/'}]
 })
 export class AppModule { }
