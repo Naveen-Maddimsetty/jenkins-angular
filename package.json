@@ -8,9 +8,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production --base-href https://github.com/Naveen-Maddimsetty/jenkins-angular",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "build-prod": "parcel build src/index.html"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
