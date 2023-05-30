@@ -27,7 +27,7 @@ jobs:
       - name: Push
         uses: s0/git-publish-subdir-action@develop
         with:
-          build_dir: dist/jenkins-angular # The directory where your assets are generated
+          build_dir: dist/my-app # The directory where your assets are generated
         env:
           REPO: self
           BRANCH: deploy # The branch name where you want to push the assets
