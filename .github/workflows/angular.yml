@@ -29,5 +29,6 @@ jobs:
         with:
           target_branch: deploy
           build_dir: dist/my-app
+          enable_jekyll: true
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
