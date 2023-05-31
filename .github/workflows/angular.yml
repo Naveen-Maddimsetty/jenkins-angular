@@ -24,12 +24,11 @@ jobs:
       - name: Build
         run: npm run build -- --configuration production --base-href "/jenkins-angular/"
         
-      - name: Push
-        uses: s0/git-publish-subdir-action@develop
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v3
         with:
-          build_dir: dist/my-app # The directory where your assets are generated
+          target_branch: deploy
+          build_dir: dist/my-app
+          enable_jekyll: true
         env:
-          REPO: self
-          BRANCH: deploy # The branch name where you want to push the assets
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
