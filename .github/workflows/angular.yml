@@ -1,23 +1,31 @@
-name: Build and Deploy
+name: CI / CD for Angular
 on:
   push:
-    branches:
-      - dev
+    branches: [ "dev" ]
+
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: All things angular
-      uses: Naveen-Maddimsetty/jenkins-angular-deploy-gh-pages-actions@[version] ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
-      with:
-        github_access_token: ${{ secrets.TOKEN }} # see the Configuration section for how you can create secrets
-        build_configuration: staging # The build environment for the app. please look configurations in your angular.json
-        base_href: /jenkins-angular/   # make sure this corresponds to https://naveen-maddimsetty.github.io/jenkins-angular/<base_href>/
-        deploy_branch: gh-pages # The branch the action should deploy to.
-        angular_dist_build_folder: dist/jenkins-angular # The folder where your project is supposed to be after running ng build by the action.
+      - name: Checkout
+        uses: actions/checkout@v3
 
-permissions:
-  contents: write # Allow write permission to GITHUB_TOKEN to commit to deploy branch.
+      - name: Set up node.js
+        uses: actions/setup-node@v3.3.0
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: deploy
+          build_dir: dist/my-app
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
