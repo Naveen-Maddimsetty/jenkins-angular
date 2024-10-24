@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh "sudo mkdir -p /var/www/angulartest.mmworkspace.com"
                 sh "sudo rm -rf /var/www/angulartest.mmworkspace.com/*" // Clear previous contents
-                sh "sudo cp -r ${WORKSPACE}/dist/* /var/www/angulartest.mmworkspace.com/"
+                sh "sudo cp -r ${WORKSPACE}/dist/my-app/* /var/www/angulartest.mmworkspace.com/"
                 
             }
         }
