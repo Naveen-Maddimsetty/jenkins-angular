@@ -1,20 +1,24 @@
 pipeline {
-  agent any
-  stages {
-    stage('Install') {
-      steps {
-        sh 'npm install'
-        sh 'npm install -g @angular/cli'
-      }
-    }
+     agent any
+     stages {
+        stage("Install Dependencies") {
+            steps {
+                sh "sudo npm install -g @angular/cli"
+                sh "sudo npm install"
+            }
+        }
 
-    stage('Build') {
-      steps {
-        sh 'ng build'
-      }
+        stage("Build") {
+            steps {
+                sh "sudo ng build"
+            }
+        }
+
+        stage("Deploy") {
+            steps {
+                sh "sudo rm -rf /var/www/angulartest.mmworkspace.com"
+                sh "sudo cp -r ${WORKSPACE}/dist/ /var/www/angulartest.mmworkspace.com/"
+            }
+        }
     }
-  }
-  tools {
-    nodejs 'nodejs'
-  }
 }
